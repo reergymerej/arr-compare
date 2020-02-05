@@ -32,7 +32,7 @@ const getNRuns = (count, fn) => {
   return results
 }
 
-const runs = 10
+const runs = 100
 const option1Runs = getNRuns(runs, () => option1(arr1, arr2))
 const option2Runs = getNRuns(runs, () => option2(arr1, arr2))
 const option1NotMatched = getNRuns(runs, () => option1(arr1, arr3))
