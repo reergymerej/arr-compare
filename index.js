@@ -18,6 +18,20 @@ const option2 = (a, b) => {
   return a.sort().toString() === b.sort().toString()
 }
 
+const option3 = (a, b) => {
+  if (a.length !== b.length) {
+    return false
+  }
+
+  for (const item of a) {
+    if (b.indexOf(item) === -1) {
+      return false
+    }
+  }
+
+  return true
+}
+
 const getRunTime = (fn) => {
   const start = process.hrtime()
   fn()
@@ -35,8 +49,10 @@ const getNRuns = (count, fn) => {
 const runs = 100
 const option1Runs = getNRuns(runs, () => option1(arr1, arr2))
 const option2Runs = getNRuns(runs, () => option2(arr1, arr2))
+const option3Runs = getNRuns(runs, () => option3(arr1, arr2))
 const option1NotMatched = getNRuns(runs, () => option1(arr1, arr3))
 const option2NotMatched = getNRuns(runs, () => option2(arr1, arr3))
+const option3NotMatched = getNRuns(runs, () => option3(arr1, arr3))
 
 const average = (hrtimes) => {
   const sum = hrtimes.reduce((acc, [, ns]) => {
@@ -47,5 +63,7 @@ const average = (hrtimes) => {
 
 console.log('option1, same', average(option1Runs))
 console.log('option2, same', average(option2Runs))
+console.log('option3, same', average(option3Runs))
 console.log('option1, !same', average(option1NotMatched))
 console.log('option2, !same', average(option2NotMatched))
+console.log('option3, !same', average(option3NotMatched))
